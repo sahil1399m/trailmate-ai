@@ -1,0 +1,1 @@
+# TrailMate AI - Schemas Package

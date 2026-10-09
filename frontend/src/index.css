@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ──────────────────────────────────────── */
+:root {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+
+  --clr-forest-900: #0d1f0f;
+  --clr-forest-800: #132b16;
+  --clr-forest-700: #1a3a1d;
+  --clr-forest-600: #234d27;
+  --clr-forest-500: #2d6133;
+  --clr-stone-700:  #4a4640;
+  --clr-stone-500:  #7a7268;
+  --clr-stone-200:  #e8e3db;
+  --clr-stone-100:  #f4f1eb;
+  --clr-lime-400:   #a3e635;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--clr-forest-900);
+  color: var(--clr-stone-200);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; }
+
+.font-display { font-family: var(--font-display); }
+
+/* ─── Custom Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--clr-forest-800); }
+::-webkit-scrollbar-thumb { background: var(--clr-forest-600); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-forest-500); }
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(163,230,53,.15); }
+  50%       { box-shadow: 0 0 40px rgba(163,230,53,.35); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float     { animation: float 4s ease-in-out infinite; }
+.animate-pulse-glow{ animation: pulse-glow 3s ease-in-out infinite; }
+.animate-fade-in-up{ opacity: 0; animation: fade-in-up 0.6s ease-out forwards; }
+
+.anim-delay-100 { animation-delay: 0.1s; }
+.anim-delay-200 { animation-delay: 0.2s; }
+.anim-delay-300 { animation-delay: 0.3s; }
+.anim-delay-400 { animation-delay: 0.4s; }
+.anim-delay-500 { animation-delay: 0.5s; }
+
+/* ─── Glass Card ─────────────────────────────────────────── */
+.glass-card {
+  background: rgba(26,58,29,.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(163,230,53,.12);
+  border-radius: 20px;
+}
+
+/* ─── Form Controls ──────────────────────────────────────── */
+.trail-input,
+.trail-select {
+  width: 100%;
+  background: rgba(13,31,15,.7);
+  border: 1.5px solid rgba(163,230,53,.2);
+  border-radius: 12px;
+  color: var(--clr-stone-200);
+  font-family: var(--font-sans);
+  font-size: .95rem;
+  padding: .85rem 1.1rem;
+  outline: none;
+  transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.trail-input::placeholder { color: var(--clr-stone-500); }
+
+.trail-input:focus,
+.trail-select:focus {
+  border-color: rgba(163,230,53,.55);
+  box-shadow: 0 0 0 3px rgba(163,230,53,.08);
+  background: rgba(13,31,15,.9);
+}
+
+.trail-input:hover,
+.trail-select:hover { border-color: rgba(163,230,53,.35); }
+
+.trail-select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a3e635' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-color: rgba(13,31,15,.7);
+  padding-right: 2.5rem;
+}
+
+.trail-select option {
+  background: var(--clr-forest-800);
+  color: var(--clr-stone-200);
+}
+
+/* ─── Labels ─────────────────────────────────────────────── */
+.trail-label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(163,230,53,.75);
+  margin-bottom: .5rem;
+}
+
+/* ─── CTA Button ─────────────────────────────────────────── */
+.btn-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: 100%;
+  padding: 1.05rem 2rem;
+  background: linear-gradient(135deg, #a3e635 0%, #84cc16 50%, #65a30d 100%);
+  color: #0d1f0f;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow: 0 4px 24px rgba(163,230,53,.25);
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(163,230,53,.4);
+  filter: brightness(1.08);
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(163,230,53,.2);
+}
+
+/* ─── Hero Background ────────────────────────────────────── */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(45,97,51,.5) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 90%, rgba(163,230,53,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(56,189,248,.05) 0%, transparent 60%),
+    linear-gradient(180deg, #0d1f0f 0%, #091508 100%);
+}
+
+/* ─── Stat Badges ────────────────────────────────────────── */
+.stat-badge {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem .9rem;
+  background: rgba(163,230,53,.08);
+  border: 1px solid rgba(163,230,53,.2);
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 500;
+  color: rgba(163,230,53,.9);
+}
+
+/* ─── Plan Output Area ───────────────────────────────────── */
+.plan-output {
+  background: rgba(13,31,15,.6);
+  border: 1.5px dashed rgba(163,230,53,.22);
+  border-radius: 20px;
+  padding: 2.5rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
